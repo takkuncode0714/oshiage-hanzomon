@@ -1,0 +1,7 @@
+'use strict';
+const statusEl=document.getElementById('pwaStatus');
+function connection(){document.getElementById('offlineStatus').textContent=navigator.onLine?'':'オフライン · 保存済みデータを表示しています';}
+connection();window.addEventListener('online',connection);window.addEventListener('offline',connection);
+let installPrompt;const install=document.getElementById('installButton');window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;install.hidden=false;});install.addEventListener('click',async()=>{if(!installPrompt)return;await installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;install.hidden=true;});window.addEventListener('appinstalled',()=>{install.hidden=true;});
+if('serviceWorker' in navigator && window.isSecureContext){let reloading=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!reloading){reloading=true;location.reload();}});navigator.serviceWorker.register('./sw.js').then(reg=>{const button=document.getElementById('updateButton');function ready(){if(reg.waiting){button.hidden=false;button.onclick=()=>reg.waiting.postMessage('ACTIVATE');}}ready();reg.addEventListener('updatefound',()=>{const worker=reg.installing;if(worker)worker.addEventListener('statechange',()=>{if(worker.state==='installed'){if(navigator.serviceWorker.controller)ready();else statusEl.textContent='オフラインで利用できます';}});});}).catch(()=>{statusEl.textContent='オフライン保存ができませんでした。オンラインでご利用ください。';});}
+else {statusEl.textContent='ホーム画面追加・オフライン保存はHTTPS公開後に利用できます。';}

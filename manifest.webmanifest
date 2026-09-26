@@ -1,0 +1,45 @@
+{
+  "id": "./",
+  "name": "押上 半蔵門線 時刻表",
+  "short_name": "押上 半蔵門線",
+  "description": "押上駅・半蔵門線 渋谷方面の手入力時刻表（非公式）",
+  "lang": "ja",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f5fa",
+  "theme_color": "#5f35b0",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "京成立石へ帰る",
+      "short_name": "帰り",
+      "url": "./return.html",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
